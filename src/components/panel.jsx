@@ -1,13 +1,27 @@
 var React = require('react');
 var ReactBootstrap = require('react-bootstrap');
+var Reflux = require('reflux');
 var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 
+var Actions = require('../stores/actions');
+var FinancialStore = require('../stores/financial-store')
+
 module.exports = React.createClass({
+  mixins: [
+    Reflux.listenTo(FinancialStore, 'onChange')
+  ],
   getInitialState: function() {
     return {
       progressPercentage: '10'
     }
+  },
+  onChange: function(event, netProfitData) {
+    // this.setState({topics: topics});
+    console.log('netProfitData : ' + netProfitData);
+  },
+  componentWillMount: function() {
+    Actions.getNetProfitData();
   },
   render: function() {
 

@@ -1,7 +1,7 @@
 var React = require('react');
-var Header = require('./header');
+var Header = require('./layout/header');
 var Summary = require('./summary');
-var Breadcrumbs = require('./breadcrumbs');
+var Breadcrumbs = require('./layout/breadcrumbs');
 
 module.exports = React.createClass({
   render: function() {
