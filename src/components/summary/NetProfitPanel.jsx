@@ -4,12 +4,12 @@ var Reflux = require('reflux');
 var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 
-var Actions = require('../../stores/actions');
-var FinancialStore = require('../../stores/financial-store')
-var Panel = require('../panel')
+var Actions = require('../../stores/Actions');
+var NetProfitStore = require('../../stores/NetProfitStore')
+var Panel = require('../Panel')
 
 module.exports = React.createClass({
-  mixins: [Reflux.listenTo(FinancialStore, 'onChange')],
+  mixins: [Reflux.listenTo(NetProfitStore, 'onChange')],
   getInitialState: function() {
     return {
       netProfit: {

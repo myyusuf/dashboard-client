@@ -9,6 +9,11 @@ module.exports = Panel = React.createClass({
     redUpArrow: 1,
     greenDownArrow: 2,
     redDownArrow: 3,
+    greenSharp: 0,
+    redHaze: 1,
+    blueSharp: 2,
+    purpleSoft: 3,
+
   },
   getDefaultProps: function() {
     return {
@@ -16,7 +21,8 @@ module.exports = Panel = React.createClass({
       title: 'Title',
       description: 'Description',
       progressInPercentage: 0,
-      iconType: 0
+      iconType: 0,
+      panelColor: 0
     }
   },
   render: function() {
@@ -37,11 +43,27 @@ module.exports = Panel = React.createClass({
       _iconClassName = 'fa fa-chevron-circle-down font-red';
     };
 
+    var _captionClassName = '';
+    var _progressBarClassName = '';
+    if(this.props.panelColor === Panel.greenSharp){
+      _captionClassName = 'font-green-sharp';
+      _progressBarClassName = 'progress-bar progress-bar-success green-sharp';
+    }else if(this.props.panelColor === Panel.redHaze){
+      _captionClassName = 'font-red-haze';
+      _progressBarClassName = 'progress-bar progress-bar-success red-haze';
+    }else if(this.props.panelColor === Panel.blueSharp){
+      _captionClassName = 'font-blue-sharp';
+      _progressBarClassName = 'progress-bar progress-bar-success blue-sharp';
+    }else if(this.props.panelColor === Panel.purpleSoft){
+      _captionClassName = 'font-purple-soft';
+      _progressBarClassName = 'progress-bar progress-bar-success purple-soft';
+    }
+
     return (
       <div className="dashboard-stat2 bordered">
         <div className="display">
           <div className="number">
-            <h3 className="font-green-sharp">
+            <h3 className={_captionClassName}>
               <span>
                 {this.props.caption}
               </span>
@@ -56,7 +78,7 @@ module.exports = Panel = React.createClass({
         </div>
         <div className="progress-info">
           <div className="progress">
-            <span id="profitProgress" style={progressStyle} className="progress-bar progress-bar-success green-sharp">
+            <span id="profitProgress" style={progressStyle} className={_progressBarClassName}>
               <span className="sr-only">% progress</span>
             </span>
           </div>
