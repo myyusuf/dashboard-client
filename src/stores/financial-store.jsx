@@ -7,8 +7,7 @@ module.exports = Reflux.createStore({
   getNetProfitData: function(id){
     Api.get('/sample/net-profit.json')
       .then(function(json){
-        console.log('json.test : ' + json.test);
-        this.netProfitData = json.data;
+        this.netProfitData = json;
         this.triggerChange();
       }.bind(this));
   },

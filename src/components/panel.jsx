@@ -1,60 +1,75 @@
 var React = require('react');
 var ReactBootstrap = require('react-bootstrap');
-var Reflux = require('reflux');
 var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 
-var Actions = require('../stores/actions');
-var FinancialStore = require('../stores/financial-store')
-
-module.exports = React.createClass({
-  mixins: [
-    Reflux.listenTo(FinancialStore, 'onChange')
-  ],
-  getInitialState: function() {
+module.exports = Panel = React.createClass({
+  statics:{
+    greenUpArrow: 0,
+    redUpArrow: 1,
+    greenDownArrow: 2,
+    redDownArrow: 3,
+  },
+  getDefaultProps: function() {
     return {
-      progressPercentage: '10'
+      caption: 'Caption',
+      title: 'Title',
+      description: 'Description',
+      progressInPercentage: 0,
+      iconType: 0
     }
-  },
-  onChange: function(event, netProfitData) {
-    // this.setState({topics: topics});
-    console.log('netProfitData : ' + netProfitData);
-  },
-  componentWillMount: function() {
-    Actions.getNetProfitData();
   },
   render: function() {
 
     var progressStyle = {
-      width: this.state.progressPercentage + '%'
+      width: this.props.progressInPercentage + '%'
     };
 
-    return <div id="profitPanel" className="dashboard-stat2 bordered">
+    var _iconClassName = '';
+
+    if(this.props.iconType === Panel.greenUpArrow){
+      _iconClassName = 'fa fa-chevron-circle-up font-green';
+    }else if(this.props.iconType === Panel.redUpArrow){
+      _iconClassName = 'fa fa-chevron-circle-up font-red';
+    }else if(this.props.iconType === Panel.greenDownArrow){
+      _iconClassName = 'fa fa-chevron-circle-down font-green';
+    }else if(this.props.iconType === Panel.redDownArrow){
+      _iconClassName = 'fa fa-chevron-circle-down font-red';
+    };
+
+    return (
+      <div className="dashboard-stat2 bordered">
         <div className="display">
-            <div className="number">
-                <h3 className="font-green-sharp">
-                    <span id="profitCaption" >0</span>
+          <div className="number">
+            <h3 className="font-green-sharp">
+              <span>
+                {this.props.caption}
+              </span>
 
-                    <small className="font-green-sharp">Juta</small>
-                </h3>
-                <small>LABA BERSIH</small>
-            </div>
-            <div className="icon">
+            </h3>
+            <small>{this.props.title}</small>
+          </div>
+          <div className="icon">
 
-                <i className="icon-like"></i>
-            </div>
+            <i className={_iconClassName}></i>
+          </div>
         </div>
         <div className="progress-info">
-            <div className="progress">
-                <span id="profitProgress" style={progressStyle} className="progress-bar progress-bar-success green-sharp">
-                    <span className="sr-only">% progress</span>
-                </span>
+          <div className="progress">
+            <span id="profitProgress" style={progressStyle} className="progress-bar progress-bar-success green-sharp">
+              <span className="sr-only">% progress</span>
+            </span>
+          </div>
+          <div className="status">
+            <div className="status-title">
+              {this.props.description}
             </div>
-            <div className="status">
-                <div className="status-title">% terhadap RKAP </div>
-                <div id="profitStatusNumber" className="status-number">{this.state.progressPercentage} % </div>
+            <div id="profitStatusNumber" className="status-number">
+              {this.props.progressInPercentage} %
             </div>
+          </div>
         </div>
-    </div>
+      </div>
+    );
   }
 });
