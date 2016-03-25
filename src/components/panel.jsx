@@ -4,16 +4,43 @@ var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 
 module.exports = React.createClass({
+  getInitialState: function() {
+    return {
+      progressPercentage: '10'
+    }
+  },
   render: function() {
-    return <div className="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 ">
-              <h4 className="widget-thumb-heading">Current Balance</h4>
-              <div className="widget-thumb-wrap">
-                  <i className="widget-thumb-icon bg-green icon-bulb"></i>
-                  <div className="widget-thumb-body">
-                      <span className="widget-thumb-subtitle">USD</span>
-                      <span className="widget-thumb-body-stat" data-counter="counterup" data-value="7,644">7,644</span>
-                  </div>
-              </div>
-          </div>
+
+    var progressStyle = {
+      width: this.state.progressPercentage + '%'
+    };
+
+    return <div id="profitPanel" className="dashboard-stat2 bordered">
+        <div className="display">
+            <div className="number">
+                <h3 className="font-green-sharp">
+                    <span id="profitCaption" >0</span>
+
+                    <small className="font-green-sharp">Juta</small>
+                </h3>
+                <small>LABA BERSIH</small>
+            </div>
+            <div className="icon">
+
+                <i className="icon-like"></i>
+            </div>
+        </div>
+        <div className="progress-info">
+            <div className="progress">
+                <span id="profitProgress" style={progressStyle} className="progress-bar progress-bar-success green-sharp">
+                    <span className="sr-only">% progress</span>
+                </span>
+            </div>
+            <div className="status">
+                <div className="status-title">% terhadap RKAP </div>
+                <div id="profitStatusNumber" className="status-number">{this.state.progressPercentage} % </div>
+            </div>
+        </div>
+    </div>
   }
 });
