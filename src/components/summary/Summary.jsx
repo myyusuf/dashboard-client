@@ -5,6 +5,7 @@ var Col = ReactBootstrap.Col;
 var NetProfitPanel = require('./NetProfitPanel');
 var ProjectInfoPanel = require('./ProjectInfoPanel');
 var ScoreCardPanel = require('./ScoreCardPanel');
+var RiskInfoPanel = require('./RiskInfoPanel');
 
 module.exports = React.createClass({
   render: function() {
@@ -19,6 +20,9 @@ module.exports = React.createClass({
           </Col>
           <Col md={3} className="margin-bottom-20">
             <ScoreCardPanel />
+          </Col>
+          <Col md={3} className="margin-bottom-20">
+            <RiskInfoPanel />
           </Col>
         </Row>
       </div>
