@@ -34,11 +34,11 @@ module.exports = Panel = React.createClass({
     var _iconClassName = '';
 
     if(this.props.iconType === Panel.greenUpArrow){
-      _iconClassName = 'fa fa-chevron-circle-up font-green';
+      _iconClassName = 'fa fa-chevron-circle-up font-green-meadow';
     }else if(this.props.iconType === Panel.redUpArrow){
       _iconClassName = 'fa fa-chevron-circle-up font-red';
     }else if(this.props.iconType === Panel.greenDownArrow){
-      _iconClassName = 'fa fa-chevron-circle-down font-green';
+      _iconClassName = 'fa fa-chevron-circle-down font-green-meadow';
     }else if(this.props.iconType === Panel.redDownArrow){
       _iconClassName = 'fa fa-chevron-circle-down font-red';
     };

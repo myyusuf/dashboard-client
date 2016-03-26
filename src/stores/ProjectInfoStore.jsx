@@ -1,11 +1,12 @@
 var Reflux = require('reflux');
 var Actions = require('./Actions');
 var Api = require('../utils/Api');
+var StoreConstant = require('./StoreConstant');
 
 module.exports = Reflux.createStore({
   listenables: [Actions],
   getProjectInfoData: function(id) {
-    Api.get('/sample/project-info.json').then(function(json) {
+    Api.get(StoreConstant.PROJECT_INFO_DATA_PATH).then(function(json) {
       this.result = json;
       this.triggerChange();
     }.bind(this));
