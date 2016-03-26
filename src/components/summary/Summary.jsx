@@ -6,6 +6,8 @@ var NetProfitPanel = require('./NetProfitPanel');
 var ProjectInfoPanel = require('./ProjectInfoPanel');
 var ScoreCardPanel = require('./ScoreCardPanel');
 var RiskInfoPanel = require('./RiskInfoPanel');
+var SimplePortlet = require('../SimplePortlet');
+var FinancialChart = require('./FinancialChart');
 
 module.exports = React.createClass({
   render: function() {
@@ -23,6 +25,13 @@ module.exports = React.createClass({
           </Col>
           <Col md={3} className="margin-bottom-20">
             <RiskInfoPanel />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={6} className="margin-bottom-20">
+            <SimplePortlet title="Laporan Keuangan">
+              <FinancialChart/>
+            </SimplePortlet>
           </Col>
         </Row>
       </div>

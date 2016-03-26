@@ -24,7 +24,7 @@ module.exports = React.createClass({
     this.setState({projectInfo: projectInfoData});
   },
   componentWillMount: function() {
-    Actions.getProjectInfoData();
+    Actions.getProjectInfoData({test: 'hello'});
   },
   render: function() {
 
