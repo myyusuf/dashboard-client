@@ -55,7 +55,7 @@ module.exports = React.createClass({
                 </li>
                 <li>
                   <a href="login.html">
-                    <i className="icon-key"></i>
+                    <i className="icon-lock"></i>
                     Log Out
                   </a>
                 </li>

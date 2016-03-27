@@ -85,7 +85,7 @@ module.exports = React.createClass({
       }
     ];
 
-    var chart = AmCharts.makeChart('dashboard_amchart_1', {
+    var chart = AmCharts.makeChart('financial_chart', {
       "type": "serial",
       "theme": "light",
       "dataDateFormat": "YYYY-MM-DD",
@@ -150,7 +150,7 @@ module.exports = React.createClass({
           "bulletSize": 5,
           "hideBulletsCount": 50,
           "lineThickness": 2,
-          "lineColor": "#e1ede9",
+          "lineColor": "#FFC300",
           "type": "smoothedLine",
           "dashLength": 5,
           "title": "Penjualan Ri",
@@ -191,7 +191,7 @@ module.exports = React.createClass({
       "legend": {
         bulletType: "round",
         equalWidths: false,
-        valueWidth: 120,
+        // valueWidth: 120,
         useGraphSettings: true,
         color: "#6c7b88"
       },
@@ -207,7 +207,7 @@ module.exports = React.createClass({
   },
   componentWillMount: function() {},
   render: function() {
-    return (<div id="dashboard_amchart_1" className="CSSAnimationChart"></div>);
+    return (<div id="financial_chart" className="CSSAnimationChart"></div>);
 
   }
 });
