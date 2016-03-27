@@ -35,7 +35,7 @@ module.exports = React.createClass({
             </SimplePortlet>
           </Col>
           <Col md={6} className="margin-bottom-20">
-            <SimplePortlet title="Omzet Kontrak">
+            <SimplePortlet title="Omzet Kontrak Baru">
               <SalesChart/>
             </SimplePortlet>
           </Col>

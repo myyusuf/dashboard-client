@@ -5,8 +5,10 @@ var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 
 var Actions = require('../../stores/Actions');
-var NetProfitStore = require('../../stores/NetProfitStore')
-var Panel = require('../Panel')
+var NetProfitStore = require('../../stores/NetProfitStore');
+var Panel = require('../Panel');
+
+var Formatter = require('../../utils/Formatter');
 
 module.exports = React.createClass({
   mixins: [Reflux.listenTo(NetProfitStore, 'onChange')],
@@ -35,7 +37,7 @@ module.exports = React.createClass({
 
     var _netProfitInMillion = parseFloat(this.state.netProfit.netProfit) / 1000000;
 
-    var _caption = _netProfitInMillion.toFixed(2) + ' JUTA';
+    var _caption = Formatter.formatNumber(_netProfitInMillion) + ' JUTA';
     var _title = "Laba Bersih";
     var _description = "% Persen terhadap RKAP";
 

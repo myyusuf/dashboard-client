@@ -4,7 +4,7 @@ var Main = require('./components/Main.jsx');
 
 var App = React.createClass({
   render: function() {
-    return <Main />
+    return <Main/>
   }
 });
 

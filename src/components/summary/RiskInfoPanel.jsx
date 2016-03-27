@@ -5,8 +5,10 @@ var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 
 var Actions = require('../../stores/Actions');
-var RiskInfoStore = require('../../stores/RiskInfoStore')
-var Panel = require('../Panel')
+var RiskInfoStore = require('../../stores/RiskInfoStore');
+var Panel = require('../Panel');
+
+var Formatter = require('../../utils/Formatter');
 
 module.exports = React.createClass({
   mixins: [Reflux.listenTo(RiskInfoStore, 'onChange')],
@@ -35,8 +37,8 @@ module.exports = React.createClass({
 
     var _extremeRiskCountInMillion = parseFloat(this.state.riskInfo.extremeRiskCount) / 1000000;
 
-    var _caption = _extremeRiskCountInMillion.toFixed(2) + ' JUTA';;
-    var _title = "Nilali Risiko Ekstrim";
+    var _caption = Formatter.formatNumber(_extremeRiskCountInMillion) + ' JUTA';;
+    var _title = "Nilai Risiko Ekstrim";
     var _description = "% terhadap total";
 
     return (
