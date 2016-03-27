@@ -42,8 +42,8 @@ module.exports = React.createClass({
             <li className="dropdown dropdown-user">
               <a href="javascript:;" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                 <div className="dropdown-user-inner">
-                  <span className="username username-hide-on-mobile">Admin</span>
-                  <img alt="" className="image-none" src=""/>
+                  <span className="username">Admin</span>
+
                 </div>
               </a>
               <ul className="dropdown-menu dropdown-menu-default">

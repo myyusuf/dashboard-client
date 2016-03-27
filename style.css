@@ -1,9 +1,6 @@
 .black {
   color: black; }
 
-.image-none {
-  width: 1px !important; }
-
 .breadcrumbs {
   padding: 16px 10px; }
 
@@ -18,7 +15,7 @@
   border: 1px solid #111;
   background: transparent;
   width: 150px;
-  padding: 5px 5px 5px 5px;
+  padding: 5px;
   font-size: 12px;
   border: 1px solid #ccc;
   height: 27px;
@@ -26,3 +23,11 @@
   -moz-appearance: none;
   appearance: none;
   background: url("/wgassets/images/arrow_down.png") 96%/15% no-repeat #fff; }
+
+.username {
+  padding-right: 5px;
+  padding-top: 22px;
+  font-size: 13px;
+  font-weight: 600;
+  height: 45px;
+  display: inline-block; }
