@@ -17,6 +17,7 @@ module.exports = Panel = React.createClass({
   },
   getDefaultProps: function() {
     return {
+      id: '',
       caption: 'Caption',
       title: 'Title',
       description: 'Description',
@@ -60,7 +61,7 @@ module.exports = Panel = React.createClass({
     }
 
     return (
-      <div className="dashboard-stat2 bordered">
+      <div id={this.props.id} className="dashboard-stat2 bordered">
         <div className="display">
           <div className="number">
             <h3 className={_captionClassName}>

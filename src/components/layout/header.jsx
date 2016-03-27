@@ -32,7 +32,7 @@ module.exports = React.createClass({
 
         </div>
 
-        <div className="page-logo">
+        <div className="page-logo" id="wgpage-logo">
           <a href="index.html">
             <img src="/wgassets/images/wg-logo-light.png" alt="logo" className="logo-default"/>
           </a>

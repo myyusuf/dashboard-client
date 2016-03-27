@@ -8,11 +8,21 @@ module.exports = React.createClass({
     return {
     }
   },
+  change: function(event){
+    if(this.props.change){
+        this.props.change(event);
+    }
+  },
   componentWillMount: function() {},
   render: function() {
 
     return (
-      <select className="custom-select" style={this.props.style} defaultValue={this.props.value}>
+      <select className="custom-select"
+        onChange={this.change}
+        style={this.props.style}
+        value={this.props.value}
+        defaultValue="0"
+        >
           <option value="0" disabled>Bulan</option>
           <option value="1">Januari</option>
           <option value="2">Februari</option>

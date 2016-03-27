@@ -16,7 +16,7 @@ module.exports = React.createClass({
       <div className="container-fluid container-lf-space">
         <Row className="widget-row">
           <Col md={3} className="margin-bottom-20">
-            <NetProfitPanel />
+            <NetProfitPanel id="wgNetProfitPanel"/>
           </Col>
           <Col md={3} className="margin-bottom-20">
             <ProjectInfoPanel />

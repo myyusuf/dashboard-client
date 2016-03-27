@@ -10,24 +10,47 @@ var Panel = require('../Panel');
 
 var Formatter = require('../../utils/Formatter');
 
+var _defaultNetProfit = {
+  month: 0,
+  year: 0,
+  netProfit: 0,
+  rkap: 0
+};
+
 module.exports = React.createClass({
   mixins: [Reflux.listenTo(NetProfitStore, 'onChange')],
   getInitialState: function() {
     return {
-      netProfit: {
-        month: 0,
-        year: 0,
-        netProfit: 0,
-        rkap: 0
-      }
+      netProfit: _defaultNetProfit
     }
   },
-  onChange: function(event, netProfitData) {
-    this.setState({netProfit: netProfitData});
+  onChange: function(event, result) {
+
+    var _eventType = result.eventType;
+
+    if(_eventType === 'success'){
+      this.setState({netProfit: result.data});
+    }else if(_eventType === 'error'){
+      this.setState({netProfit: _defaultNetProfit});
+    }else if(_eventType === 'startRequest'){
+      App.blockUI({
+          target: '#' + this.props.id,
+          boxed: true
+      });
+    }
+
   },
   // componentWillMount: function() {
   //   Actions.getNetProfitData();
   // },
+  getDefaultProps: function() {
+    return {
+      id: 'netProfitPanel',
+    }
+  },
+  componentDidUpdate: function() {
+    App.unblockUI('#' + this.props.id);
+  },
   render: function() {
 
     var _progressInPercentage = 0;
@@ -43,6 +66,7 @@ module.exports = React.createClass({
 
     return (
       <Panel
+        id={this.props.id}
         caption={_caption}
         title={_title}
         description={_description}
