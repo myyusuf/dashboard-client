@@ -24,6 +24,11 @@
   appearance: none;
   background: url("/wgassets/images/arrow_down.png") 96%/15% no-repeat #fff; }
 
+.breadcrumbs-filter {
+  margin-left: 10px;
+  margin-right: 10px;
+  color: gray; }
+
 .username {
   padding-right: 5px;
   padding-top: 22px;
@@ -31,3 +36,13 @@
   font-weight: 600;
   height: 45px;
   display: inline-block; }
+
+.page-content-inner {
+  padding-top: 165px; }
+
+.wg-fixed-top {
+  position: fixed;
+  top: 70px;
+  right: 0;
+  left: 0;
+  z-index: 1030; }

@@ -14,9 +14,10 @@ module.exports = React.createClass({
       marginTop: '5px'
     }
 
-    return <div className="breadcrumbs">
+    return <div className="breadcrumbs wg-fixed-top">
       <div className="container-fluid">
         <div className="breadcrumbs-select">
+          <label className="breadcrumbs-filter">Filter</label>
           <MonthSelect />
           <YearSelect style={_selectStyle}/>
         </div>

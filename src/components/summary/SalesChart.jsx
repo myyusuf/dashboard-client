@@ -13,51 +13,63 @@ module.exports = React.createClass({
       {
         "month": "Jan",
         "plan": 16.99,
-        "actual": 52.727
+        "actual": 52.727,
+        "projection": null
       }, {
         "month": "Feb",
         "plan": 336.515,
-        "actual": 0
+        "actual": 200,
+        "projection": null
       }, {
         "month": "Mar",
         "plan": 1650.662,
-        "actual": 0
+        "actual": 250,
+        "projection": null
       }, {
         "month": "Apr",
         "plan": 1893.504,
-        "actual": 0
+        "actual": 250,
+        "projection": 250
       }, {
         "month": "Mei",
         "plan": 1913.385,
-        "actual": 0
+        "actual": null,
+        "projection": 370
       }, {
         "month": "Jun",
         "plan": 1932.368,
-        "actual": 0
+        "actual": null,
+        "projection": 380
       }, {
         "month": "Jul",
         "plan": 2251.404,
-        "actual": 0
+        "actual": null,
+        "projection": 385
       }, {
         "month": "Ags",
         "plan": 2447.976,
-        "actual": 0
+        "actual": null,
+        "projection": 500
       }, {
         "month": "Sep",
         "plan": 2469.952,
-        "actual": 0
+        "actual": null,
+        "projection": 510
       }, {
         "month": "Okt",
         "plan": 2515.469,
-        "actual": 0
+        "actual": null,
+        "projection": 515
       }, {
         "month": "Nov",
         "plan": 2547.981,
-        "actual": 0
+        "actual": null,
+        "projection": 620
       }, {
         "month": "Des",
         "plan": 2600,
-        "actual": 0
+        "actual": null,
+        "projection": 725
       }
     ];
 
@@ -108,6 +120,23 @@ module.exports = React.createClass({
           "valueField": "actual",
           "legendValueText": "Rp. [[value]]M",
           "balloonText": "[[title]]<br/><b style='font-size: 130%'>[[value]]M</b>"
+        },
+        {
+          "id": "g3",
+          "valueAxis": "v2",
+          "bullet": "round",
+          "bulletBorderAlpha": 1,
+          "bulletColor": "#FFFFFF",
+          "bulletSize": 6,
+          "hideBulletsCount": 50,
+          "lineThickness": 3,
+          "lineColor": "#A569BD",
+          "type": "smoothedLine",
+          "title": "Proyeksi",
+          "useLineColorForBulletBorder": true,
+          "valueField": "projection",
+          "legendValueText": "Rp. [[value]]M",
+          "balloonText": "[[title]]<br/><b style='font-size: 130%'>[[value]]M</b>"
         }
       ],
       "chartScrollbar": {
@@ -141,7 +170,7 @@ module.exports = React.createClass({
       "legend": {
         bulletType: "round",
         equalWidths: false,
-        valueWidth: 150,
+        // valueWidth: 150,
         useGraphSettings: true,
         color: "#6c7b88"
       },

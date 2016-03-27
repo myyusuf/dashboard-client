@@ -7,6 +7,7 @@ module.exports = React.createClass({
   render: function() {
     return <div>
       <Header />
+      <Breadcrumbs></Breadcrumbs>
       {this.content()}
     </div>
   },
@@ -15,7 +16,6 @@ module.exports = React.createClass({
     //   return this.props.children
     // } else {
       return <div className="page-container page-content-inner page-container-bg-solid">
-        <Breadcrumbs></Breadcrumbs>
         <Summary></Summary>
        </div>
     // }

@@ -102,8 +102,8 @@ module.exports = React.createClass({
         {
           "id": "g3",
           "valueAxis": "v1",
-          "lineColor": "#e1ede9",
-          "fillColors": "#e1ede9",
+          "lineColor": "#0B2DA4",
+          "fillColors": "#0B2DA4",
           "fillAlphas": 1,
           "type": "column",
           "title": "Tagihan Bruto",
