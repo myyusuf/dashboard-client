@@ -2,8 +2,20 @@ var React = require('react');
 var MonthSelect = require('../MonthSelect');
 var YearSelect = require('../YearSelect');
 
-module.exports = React.createClass({
+var Actions = require('../../stores/Actions');
 
+module.exports = React.createClass({
+  getInitialState: function() {
+    var _moment = moment().subtract(1, 'months');
+
+    return {
+      yearDefaultValue: _moment.year(),
+      monthDefaultValue: _moment.month()+1
+    }
+  },
+  componentWillMount: function() {
+    Actions.getNetProfitData();
+  },
   render: function() {
 
     var _selectStyle = {
@@ -18,8 +30,8 @@ module.exports = React.createClass({
       <div className="container-fluid">
         <div className="breadcrumbs-select">
           <label className="breadcrumbs-filter">Filter</label>
-          <MonthSelect />
-          <YearSelect style={_selectStyle}/>
+          <MonthSelect value={this.state.monthDefaultValue}/>
+          <YearSelect value={this.state.yearDefaultValue} style={_selectStyle}/>
         </div>
 
         <ol className="breadcrumbs-list" style={_linkStyle}>

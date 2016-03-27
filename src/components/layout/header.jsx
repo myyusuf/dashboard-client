@@ -1,10 +1,12 @@
 var React = require('react');
+var Actions = require('../../stores/Actions');
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {}
   },
-  componentWillMount: function() {},
+  componentWillMount: function() {
+  },
   render: function() {
     return <div className="page-header navbar-fixed-top">
 

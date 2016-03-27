@@ -25,9 +25,9 @@ module.exports = React.createClass({
   onChange: function(event, netProfitData) {
     this.setState({netProfit: netProfitData});
   },
-  componentWillMount: function() {
-    Actions.getNetProfitData();
-  },
+  // componentWillMount: function() {
+  //   Actions.getNetProfitData();
+  // },
   render: function() {
 
     var _progressInPercentage = 0;

@@ -12,7 +12,7 @@ module.exports = React.createClass({
   render: function() {
 
     return (
-      <select className="custom-select" style={this.props.style} defaultValue="0">
+      <select className="custom-select" style={this.props.style} defaultValue={this.props.value}>
           <option value="0" disabled>Bulan</option>
           <option value="1">Januari</option>
           <option value="2">Februari</option>
