@@ -1,11 +1,29 @@
 .black {
-  color: black
+  color: black;
 }
-
 .image-none {
   width: 1px !important;
 }
-
 .breadcrumbs {
-  padding: 15px 10px;
+  padding: 16px 10px;
+}
+.breadcrumbs-select {
+  float: left;
+  color: #3e4f5e;
+  font-weight: 600;
+  margin: 0;
+}
+.custom-select {
+  margin: 1px;
+  border: 1px solid #111;
+  background: transparent;
+  width: 150px;
+  padding: 5px 5px 5px 5px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  height: 27px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url("/wgassets/images/arrow_down.png") 96% / 15% no-repeat #fff;
 }

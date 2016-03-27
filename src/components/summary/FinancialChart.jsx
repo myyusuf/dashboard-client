@@ -189,9 +189,11 @@ module.exports = React.createClass({
         "minorGridEnabled": true
       },
       "legend": {
-        "useGraphSettings": true,
+        bulletType: "round",
+        equalWidths: false,
         valueWidth: 120,
-        "position": "top"
+        useGraphSettings: true,
+        color: "#6c7b88"
       },
       "balloon": {
         "borderThickness": 1,
