@@ -10,6 +10,8 @@ var SimplePortlet = require('../SimplePortlet');
 var FinancialChart = require('./FinancialChart');
 var SalesChart = require('./SalesChart');
 
+var PropertyPanel = require('./PropertyPanel');
+
 var Actions = require('../../stores/Actions');
 
 module.exports = React.createClass({
@@ -46,6 +48,18 @@ module.exports = React.createClass({
           <Col md={6} className="margin-bottom-20">
             <SimplePortlet title="Omzet Kontrak Baru">
               <SalesChart/>
+            </SimplePortlet>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={6} className="margin-bottom-20">
+            <SimplePortlet title="Property">
+              <PropertyPanel />
+            </SimplePortlet>
+          </Col>
+          <Col md={6} className="margin-bottom-20">
+            <SimplePortlet title="SMWG">
+
             </SimplePortlet>
           </Col>
         </Row>
