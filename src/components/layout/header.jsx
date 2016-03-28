@@ -50,10 +50,10 @@ module.exports = React.createClass({
               </a>
               <ul className="dropdown-menu dropdown-menu-default">
                 <li>
-                  <a href="extra_profile.html">
+                  {/*<a href="extra_profile.html">
                     <i className="icon-user"></i>
                     My Profile
-                  </a>
+                  </a>*/}
                 </li>
                 <li>
                   <a href="login.html">

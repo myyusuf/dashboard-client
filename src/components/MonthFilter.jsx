@@ -56,7 +56,7 @@ module.exports = React.createClass({
 
     return (
       <div className="breadcrumbs-select">
-        <label className="breadcrumbs-filter">Filter</label>
+        {/*<label className="breadcrumbs-filter">Filter</label>*/}
         <MonthSelect change={this.monthChange} value={this.state.month}/>
         <YearSelect change={this.yearChange} value={this.state.year} style={_selectStyle}/>
       </div>
