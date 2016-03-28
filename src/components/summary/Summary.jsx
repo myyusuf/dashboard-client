@@ -10,6 +10,8 @@ var SimplePortlet = require('../SimplePortlet');
 var FinancialChart = require('./FinancialChart');
 var SalesChart = require('./SalesChart');
 
+var EasyPieChart = require('../EasyPieChart');
+
 var PropertyPanel = require('./PropertyPanel');
 
 var Actions = require('../../stores/Actions');
@@ -60,7 +62,11 @@ module.exports = React.createClass({
           </Col>
           <Col md={6} className="margin-bottom-20">
             <SimplePortlet title="SMWG">
-
+              <Row>
+                <Col md={4}>
+                  <EasyPieChart />
+                </Col>
+              </Row>
             </SimplePortlet>
           </Col>
         </Row>
