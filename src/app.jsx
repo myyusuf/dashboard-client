@@ -1,12 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Main = require('./components/Main.jsx');
+var Routes = require('./Routes');
 
-var App = React.createClass({
-  render: function() {
-    return <Main/>
-  }
-});
-
-var element = React.createElement(App, {});
-ReactDOM.render(element, document.querySelector('.appcontainer'));
+ReactDOM.render(Routes, document.querySelector('.appcontainer'));
