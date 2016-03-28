@@ -27,25 +27,19 @@ module.exports = React.createClass({
   getDefaultProps: function() {
     return {onFilterChange: null}
   },
-  shouldComponentUpdate: function(nextProps, nextState) {
-    if(nextState.month === this.state.month && nextState.year === this.state.year){
-      return false;
-    }else{
-      return true;
-    }
-  },
-  componentDidUpdate: function(previousProps, previousState) {
-    this.props.onFilterChange(this.state.month, this.state.year);
-  },
   monthChange: function(event) {
 
     var _month = event.target.value;
+    //Must be called before setState, dont call on componentDidUpdate
+    this.props.onFilterChange(_month, this.state.year);
 
     this.setState({month: _month});
   },
   yearChange: function(event) {
 
     var _year = event.target.value;
+    //Must be called before setState, dont call on componentDidUpdate
+    this.props.onFilterChange(this.state.month, _year);
 
     this.setState({year: _year});
   },
@@ -55,6 +49,8 @@ module.exports = React.createClass({
     var _selectStyle = {
       marginLeft: '10px'
     }
+
+    console.log('monthFilter render called....');
 
     return (
       <div className="breadcrumbs-select">

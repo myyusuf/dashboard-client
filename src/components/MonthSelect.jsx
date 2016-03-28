@@ -9,6 +9,8 @@ module.exports = React.createClass({
     }
   },
   change: function(event){
+
+    console.log('month selec onchange called....');
     if(this.props.change){
         this.props.change(event);
     }
