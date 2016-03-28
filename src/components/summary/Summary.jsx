@@ -18,6 +18,7 @@ module.exports = React.createClass({
 
   sendActions: function() {
     Actions.getNetProfitData({year: this.props.year, month: this.props.month});
+    Actions.getPropertyData({year: this.props.year, month: this.props.month});
   },
   render: function() {
 
