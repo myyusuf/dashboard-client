@@ -10,8 +10,17 @@ var SimplePortlet = require('../SimplePortlet');
 var FinancialChart = require('./FinancialChart');
 var SalesChart = require('./SalesChart');
 
+var Actions = require('../../stores/Actions');
+
 module.exports = React.createClass({
+
+  sendActions: function() {
+    Actions.getNetProfitData({year: this.props.year, month: this.props.month});
+  },
   render: function() {
+
+    this.sendActions();
+
     return (
       <div className="container-fluid container-lf-space">
         <Row className="widget-row">
