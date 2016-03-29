@@ -11,6 +11,8 @@ var FinancialChart = require('./FinancialChart');
 var SalesChart = require('./SalesChart');
 
 var QmslPieChart = require('./QmslPieChart');
+var SheLevelPieChart = require('./SheLevelPieChart');
+var FiveRPieChart = require('./FiveRPieChart');
 
 var PropertyPanel = require('./PropertyPanel');
 
@@ -65,6 +67,12 @@ module.exports = React.createClass({
               <Row>
                 <Col md={4}>
                   <QmslPieChart />
+                </Col>
+                <Col md={4}>
+                  <SheLevelPieChart />
+                </Col>
+                <Col md={4}>
+                  <FiveRPieChart />
                 </Col>
               </Row>
             </SimplePortlet>
