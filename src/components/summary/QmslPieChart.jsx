@@ -5,24 +5,25 @@ var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 
 var Actions = require('../../stores/Actions');
-var NetProfitStore = require('../../stores/NetProfitStore');
+var SmwgStore = require('../../stores/SmwgStore');
 var EasyPieChart = require('../EasyPieChart');
 
 var Formatter = require('../../utils/Formatter');
 var Utils = require('../../utils/Utils');
 
-var _defaultNetProfit = {
+var _defaultQmsl = {
   month: 0,
   year: 0,
-  netProfit: 0,
-  rkap: 0
+  qmslValue: 0,
+  scoreTarget: 0,
+  projectCount: 0
 };
 
 module.exports = React.createClass({
-  // mixins: [Reflux.listenTo(NetProfitStore, 'onChange')],
+  mixins: [Reflux.listenTo(SmwgStore, 'onChange')],
   getInitialState: function() {
     return {
-      netProfit: _defaultNetProfit
+      qmsl: _defaultQmsl
     }
   },
   onChange: function(event, result) {
@@ -30,9 +31,20 @@ module.exports = React.createClass({
     var _eventType = result.eventType;
 
     if(_eventType === 'success'){
-      this.setState({netProfit: result.data});
+
+      var _data = result.data;
+
+      var _qmslData = {
+        month: 0,
+        year: 0,
+        qmslValue: _data.qmsl,
+        scoreTarget: _data.scoreTarget.qmsl,
+        projectCount: _data.projectCount.qmsl
+      }
+
+      this.setState({qmsl: _qmslData});
     }else if(_eventType === 'error'){
-      this.setState({netProfit: _defaultNetProfit});
+      this.setState({qmsl: _defaultQmsl});
     }else if(_eventType === 'startRequest'){
       App.blockUI({
           target: '#' + this.props.id,
@@ -54,8 +66,11 @@ module.exports = React.createClass({
   render: function() {
 
     var _title = "QMSL";
-    var _progressInPercentage = 10;
-
+    var _progressInPercentage = 0;
+    if(this.state.qmsl.projectCount != 0){
+      _progressInPercentage = (this.state.qmsl.qmslValue / this.state.qmsl.projectCount) * 100;
+    }
+    
     return (
       <EasyPieChart
         title={_title}
