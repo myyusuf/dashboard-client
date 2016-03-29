@@ -4,6 +4,8 @@ var ReactBootstrap = require('react-bootstrap');
 var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 
+var Utils = require('../utils/Utils');
+
 module.exports = EasyPieChart = React.createClass({
   statics: {
     greenUpArrow: 0,
@@ -18,7 +20,9 @@ module.exports = EasyPieChart = React.createClass({
     yellow: '#F8CB00'
   },
   getDefaultProps: function() {
+    var _randomId = 'qmslPieChart_' + Utils.generateUUID();
     return {
+      id: _randomId,
       title: 'Title',
       progressInPercentage: 0,
       iconType: 0,
@@ -26,7 +30,7 @@ module.exports = EasyPieChart = React.createClass({
     }
   },
   componentDidMount: function(){
-    $(ReactDOM.findDOMNode(this.refs.easyPieChartPanel)).find('div').easyPieChart({
+    $('#' + this.props.id).find('div').easyPieChart({
         animate: 1000,
         size: 75,
         lineWidth: 3,
@@ -34,14 +38,14 @@ module.exports = EasyPieChart = React.createClass({
     });
   },
   componentDidUpdate: function() {
-    $(ReactDOM.findDOMNode(this.refs.easyPieChartPanel)).find('div').data('easyPieChart').update(this.props.progressInPercentage);
+    $('#' + this.props.id).find('div').data('easyPieChart').update(this.props.progressInPercentage);
   },
   render: function() {
     var _iconStyle = {
       marginLeft: '5px'
     }
     return (
-      <div ref="easyPieChartPanel" className="easy-pie-chart">
+      <div id={this.props.id} className="easy-pie-chart">
         <div className="number" data-percent={this.props.progressInPercentage}>
           <span>{this.props.progressInPercentage}</span>%
         </div>

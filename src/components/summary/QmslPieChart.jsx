@@ -70,9 +70,10 @@ module.exports = React.createClass({
     if(this.state.qmsl.projectCount != 0){
       _progressInPercentage = (this.state.qmsl.qmslValue / this.state.qmsl.projectCount) * 100;
     }
-    
+
     return (
       <EasyPieChart
+        id={this.props.id}
         title={_title}
         progressInPercentage={Formatter.formatNumber(_progressInPercentage, 0)}
         panelColor={EasyPieChart.yellow}
