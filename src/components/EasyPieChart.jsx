@@ -33,7 +33,7 @@ module.exports = EasyPieChart = React.createClass({
     $('#' + this.props.id).find('div').easyPieChart({
         animate: 1000,
         size: 75,
-        lineWidth: 3,
+        lineWidth: 7,
         barColor: this.props.panelColor
     });
   },
