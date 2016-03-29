@@ -4,3 +4,4 @@ exports.SCORE_CARD_DATA_PATH = '/sample/score-card.json'
 exports.RISK_INFO_DATA_PATH = '/sample/risk-info.json'
 
 exports.PROPERTY_DATA_PATH = '/sample/wg-property-list/'
+exports.SMWG_DATA_PATH = '/sample/smwg/'

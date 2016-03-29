@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var ReactBootstrap = require('react-bootstrap');
 var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
@@ -9,39 +10,38 @@ module.exports = EasyPieChart = React.createClass({
     redUpArrow: 1,
     greenDownArrow: 2,
     redDownArrow: 3,
-    greenSharp: 0,
-    redHaze: 1,
-    blueSharp: 2,
-    purpleSoft: 3
+    blue: '#89C4F4',
+    red: '#F3565D',
+    green: '#1bbc9b',
+    purple: '#9b59b6',
+    grey: '#95a5a6',
+    yellow: '#F8CB00'
   },
   getDefaultProps: function() {
     return {
-      id: '',
-      caption: 'Caption',
       title: 'Title',
-      description: 'Description',
       progressInPercentage: 0,
       iconType: 0,
-      panelColor: 0
+      panelColor: '#89C4F4'
     }
   },
   componentDidMount: function(){
-    $('#qmslPanel').find('div').easyPieChart({
+    $(ReactDOM.findDOMNode(this.refs.easyPieChartPanel)).find('div').easyPieChart({
         animate: 1000,
         size: 75,
         lineWidth: 3,
-        barColor: App.getBrandColor('yellow')
+        barColor: this.props.panelColor
     });
   },
   render: function() {
 
     return (
-      <div id="qmslPanel" className="easy-pie-chart">
-        <div className="number qmsl" data-percent="55">
-          <span>0</span>%
+      <div ref="easyPieChartPanel" className="easy-pie-chart">
+        <div className="number" data-percent={this.props.progressInPercentage}>
+          <span>{this.props.progressInPercentage}</span>%
         </div>
         <a className="title" href="javascript:;">
-          QMSL
+          {this.props.title}
           <i className="icon-arrow-right"></i>
         </a>
       </div>

@@ -10,7 +10,7 @@ var SimplePortlet = require('../SimplePortlet');
 var FinancialChart = require('./FinancialChart');
 var SalesChart = require('./SalesChart');
 
-var EasyPieChart = require('../EasyPieChart');
+var QmslPieChart = require('./QmslPieChart');
 
 var PropertyPanel = require('./PropertyPanel');
 
@@ -64,7 +64,7 @@ module.exports = React.createClass({
             <SimplePortlet title="SMWG">
               <Row>
                 <Col md={4}>
-                  <EasyPieChart />
+                  <QmslPieChart />
                 </Col>
               </Row>
             </SimplePortlet>
