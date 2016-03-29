@@ -3,6 +3,8 @@ var ReactBootstrap = require('react-bootstrap');
 var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 
+var Utils = require('../utils/Utils');
+
 module.exports = Panel = React.createClass({
   statics:{
     greenUpArrow: 0,
@@ -16,8 +18,9 @@ module.exports = Panel = React.createClass({
 
   },
   getDefaultProps: function() {
+    var _randomId = 'panel_' + Utils.generateUUID();
     return {
-      id: '',
+      id: _randomId,
       caption: 'Caption',
       title: 'Title',
       description: 'Description',

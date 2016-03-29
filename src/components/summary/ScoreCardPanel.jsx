@@ -5,26 +5,49 @@ var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 
 var Actions = require('../../stores/Actions');
-var ScoreCardStore = require('../../stores/ScoreCardStore')
-var Panel = require('../Panel')
+var ScoreCardStore = require('../../stores/ScoreCardStore');
+var Panel = require('../Panel');
+
+var Formatter = require('../../utils/Formatter');
+var Utils = require('../../utils/Utils');
+
+var _deaultScoreCard = {
+  month: 0,
+  year: 0,
+  total: 0,
+  target: 0
+}
 
 module.exports = React.createClass({
   mixins: [Reflux.listenTo(ScoreCardStore, 'onChange')],
   getInitialState: function() {
     return {
-      scoreCard: {
-        month: 0,
-        year: 0,
-        total: 0,
-        target: 0
-      }
+      scoreCard: _deaultScoreCard
     }
   },
-  onChange: function(event, scoreCardData) {
-    this.setState({scoreCard: scoreCardData});
+  getDefaultProps: function() {
+    var _randomId = 'scoreCardPanel_' + Utils.generateUUID();
+    return {
+      id: _randomId,
+    }
   },
-  componentWillMount: function() {
-    Actions.getScoreCardData();
+  onChange: function(event, result) {
+
+    var _eventType = result.eventType;
+
+    if(_eventType === 'success'){
+      this.setState({scoreCard: result.data});
+    }else if(_eventType === 'error'){
+      this.setState({scoreCard: _deaultScoreCard});
+    }else if(_eventType === 'startRequest'){
+      App.blockUI({
+          target: '#' + this.props.id,
+          boxed: true
+      });
+    }
+  },
+  componentDidUpdate: function() {
+    App.unblockUI('#' + this.props.id);
   },
   render: function() {
 
@@ -39,10 +62,11 @@ module.exports = React.createClass({
 
     return (
       <Panel
+        id={this.props.id}
         caption={_caption}
         title={_title}
         description={_description}
-        progressInPercentage={_progressInPercentage.toFixed(2)}
+        progressInPercentage={Formatter.formatNumber(_progressInPercentage)}
         iconType={Panel.greenDownArrow}
         panelColor={Panel.blueSharp}
       />);

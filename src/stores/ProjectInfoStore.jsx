@@ -2,26 +2,12 @@ var Reflux = require('reflux');
 var Actions = require('./Actions');
 var Api = require('../utils/Api');
 var StoreConstant = require('./StoreConstant');
+var WgStore = require('./WgStore');
 
 module.exports = Reflux.createStore({
-  listenables: [Actions],
+  mixins: [WgStore],
   getProjectInfoData: function(rangeData) {
     var _url = StoreConstant.PROJECT_INFO_DATA_PATH + rangeData.year + '/' + rangeData.month;
-
-    this.trigger('change', {eventType: 'startRequest', data: null});
-
-    Api.get(_url)
-    .then(function(json) {
-      this.result = {eventType: 'success', data: json};
-      this.triggerChange();
-    }.bind(this))
-    .catch(function(ex) {
-      console.log('parsing failed', ex);
-      this.result = {eventType: 'error', data: null};
-      this.triggerChange();
-    }.bind(this));
-  },
-  triggerChange: function() {
-    this.trigger('change', this.result);
+    this.getData(_url);
   }
 });

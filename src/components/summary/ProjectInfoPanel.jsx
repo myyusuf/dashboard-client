@@ -8,6 +8,9 @@ var Actions = require('../../stores/Actions');
 var ProjectInfoStore = require('../../stores/ProjectInfoStore');
 var Panel = require('../Panel');
 
+var Formatter = require('../../utils/Formatter');
+var Utils = require('../../utils/Utils');
+
 var _defaultProjectInfo = {
   month: 0,
   year: 0,
@@ -22,8 +25,11 @@ module.exports = React.createClass({
       projectInfo: _defaultProjectInfo
     }
   },
-  onChange: function(event, projectInfoData) {
-    this.setState({projectInfo: projectInfoData});
+  getDefaultProps: function() {
+    var _randomId = 'projectInfoPanel_' + Utils.generateUUID();
+    return {
+      id: _randomId,
+    }
   },
   onChange: function(event, result) {
 
@@ -41,9 +47,9 @@ module.exports = React.createClass({
     }
 
   },
-  // componentWillMount: function() {
-  //   Actions.getProjectInfoData({});
-  // },
+  componentDidUpdate: function() {
+    App.unblockUI('#' + this.props.id);
+  },
   render: function() {
 
     var _progressInPercentage = 0;
@@ -57,10 +63,11 @@ module.exports = React.createClass({
 
     return (
       <Panel
+        id={this.props.id}
         caption={_caption}
         title={_title}
         description={_description}
-        progressInPercentage={_progressInPercentage.toFixed(2)}
+        progressInPercentage={Formatter.formatNumber(_progressInPercentage)}
         iconType={Panel.redDownArrow}
         panelColor={Panel.redHaze}
       />);

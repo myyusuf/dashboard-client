@@ -9,6 +9,7 @@ var NetProfitStore = require('../../stores/NetProfitStore');
 var Panel = require('../Panel');
 
 var Formatter = require('../../utils/Formatter');
+var Utils = require('../../utils/Utils');
 
 var _defaultNetProfit = {
   month: 0,
@@ -24,6 +25,12 @@ module.exports = React.createClass({
       netProfit: _defaultNetProfit
     }
   },
+  getDefaultProps: function() {
+    var _randomId = 'netProfitPanel_' + Utils.generateUUID();
+    return {
+      id: _randomId,
+    }
+  },
   onChange: function(event, result) {
 
     var _eventType = result.eventType;
@@ -37,15 +44,6 @@ module.exports = React.createClass({
           target: '#' + this.props.id,
           boxed: true
       });
-    }
-
-  },
-  // componentWillMount: function() {
-  //   Actions.getNetProfitData();
-  // },
-  getDefaultProps: function() {
-    return {
-      id: 'netProfitPanel',
     }
   },
   componentDidUpdate: function() {
@@ -70,7 +68,7 @@ module.exports = React.createClass({
         caption={_caption}
         title={_title}
         description={_description}
-        progressInPercentage={_progressInPercentage.toFixed(2)}
+        progressInPercentage={Formatter.formatNumber(_progressInPercentage)}
       />
     );
   }
