@@ -30,12 +30,12 @@ module.exports = React.createClass({
     </div>
   },
   content: function() {
-    // if(this.props.children) {
-    //   return this.props.children
-    // } else {
-    return <div className="page-container page-content-inner page-container-bg-solid">
-      <Summary month={this.state.month} year={this.state.year}></Summary>
-    </div>
-    // }
+    if(this.props.children) {
+      return this.props.children
+    } else {
+      return <div className="page-container page-content-inner page-container-bg-solid">
+        <Summary month={this.state.month} year={this.state.year}></Summary>
+      </div>
+    }
   }
 });

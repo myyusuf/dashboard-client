@@ -1,5 +1,9 @@
 var React = require('react');
 var ReactBootstrap = require('react-bootstrap');
+
+var ReactRouter = require('react-router');
+var Link = ReactRouter.Link;
+
 var Reflux = require('reflux');
 var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
@@ -63,6 +67,7 @@ module.exports = React.createClass({
     var _description = "% Persen terhadap RKAP";
 
     return (
+      <Link to={"viewpdf/netprofit/2016/2"} className="">
       <Panel
         id={this.props.id}
         caption={_caption}
@@ -70,6 +75,7 @@ module.exports = React.createClass({
         description={_description}
         progressInPercentage={Formatter.formatNumber(_progressInPercentage)}
       />
+      </Link>
     );
   }
 });
