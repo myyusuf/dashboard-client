@@ -9,24 +9,45 @@ var RiskInfoStore = require('../../stores/RiskInfoStore');
 var Panel = require('../Panel');
 
 var Formatter = require('../../utils/Formatter');
+var Utils = require('../../utils/Utils');
+
+var _defaultRiskInfo = {
+  month: 0,
+  year: 0,
+  riskCount: 0,
+  extremeRiskCount: 0
+}
 
 module.exports = React.createClass({
   mixins: [Reflux.listenTo(RiskInfoStore, 'onChange')],
   getInitialState: function() {
     return {
-      riskInfo: {
-        month: 0,
-        year: 0,
-        riskCount: 0,
-        extremeRiskount: 0
-      }
+      riskInfo: _defaultRiskInfo
     }
   },
-  onChange: function(event, riskInfoData) {
-    this.setState({riskInfo: riskInfoData});
+  getDefaultProps: function() {
+    var _randomId = 'riskInfoPanel_' + Utils.generateUUID();
+    return {
+      id: _randomId,
+    }
   },
-  componentWillMount: function() {
-    Actions.getRiskInfoData();
+  onChange: function(event, result) {
+
+    var _eventType = result.eventType;
+
+    if(_eventType === 'success'){
+      this.setState({riskInfo: result.data});
+    }else if(_eventType === 'error'){
+      this.setState({riskInfo: _defaultRiskInfo});
+    }else if(_eventType === 'startRequest'){
+      App.blockUI({
+          target: '#' + this.props.id,
+          boxed: true
+      });
+    }
+  },
+  componentDidUpdate: function() {
+    App.unblockUI('#' + this.props.id);
   },
   render: function() {
 
@@ -43,10 +64,11 @@ module.exports = React.createClass({
 
     return (
       <Panel
+        id={this.props.id}
         caption={_caption}
         title={_title}
         description={_description}
-        progressInPercentage={_progressInPercentage.toFixed(2)}
+        progressInPercentage={Formatter.formatNumber(_progressInPercentage)}
         iconType={Panel.redUpArrow}
         panelColor={Panel.purpleSoft}
       />);

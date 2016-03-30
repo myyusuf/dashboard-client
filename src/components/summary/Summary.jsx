@@ -24,6 +24,7 @@ module.exports = React.createClass({
     Actions.getNetProfitData({year: this.props.year, month: this.props.month});
     Actions.getProjectInfoData({year: this.props.year, month: this.props.month});
     Actions.getScoreCardData({year: this.props.year, month: this.props.month});
+    Actions.getRiskInfoData({year: this.props.year, month: this.props.month});
     Actions.getPropertyData({year: this.props.year, month: this.props.month});
   },
   render: function() {
