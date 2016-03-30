@@ -25,6 +25,10 @@ module.exports = React.createClass({
     Actions.getProjectInfoData({year: this.props.year, month: this.props.month});
     Actions.getScoreCardData({year: this.props.year, month: this.props.month});
     Actions.getRiskInfoData({year: this.props.year, month: this.props.month});
+
+    Actions.getFinancialData({year: this.props.year, month: this.props.month});
+
+    Actions.getSmwgData({year: this.props.year, month: this.props.month});
     Actions.getPropertyData({year: this.props.year, month: this.props.month});
   },
   render: function() {

@@ -1,91 +1,50 @@
 var React = require('react');
+var Reflux = require('reflux');
+
+var Utils = require('../../utils/Utils');
+
+var FinancialStore = require('../../stores/FinancialStore');
 
 module.exports = React.createClass({
+  mixins: [Reflux.listenTo(FinancialStore, 'onChange')],
   getInitialState: function() {
-    return {}
+    return {
+      chart: null
+    }
   },
   getDefaultProps: function() {
-    return {title: 'Title'}
+    var _randomId = 'financialChart_' + Utils.generateUUID();
+    return {
+      id: _randomId,
+      title: 'Title'
+    }
+  },
+  onChange: function(event, result) {
+
+    var _eventType = result.eventType;
+
+    if(_eventType === 'success'){
+      // this.setState({chartData: result.data});
+      this.state.chart.dataProvider = [];
+      this.state.chart.dataProvider = result.data;
+      this.state.chart.validateData();
+      App.unblockUI('#' + this.props.id);
+
+    }else if(_eventType === 'error'){
+      // this.setState({chartData: []});
+      this.state.chart.dataProvider = [];
+      this.state.chart.validateData();
+      App.unblockUI('#' + this.props.id);
+    }else if(_eventType === 'startRequest'){
+      App.blockUI({
+          target: '#' + this.props.id,
+          boxed: true
+      });
+    }
   },
   componentDidMount() {
 
-    var chartData = [
-      {
-        "bulan": "Jan",
-        "penjualanRa": 110.365,
-        "penjualanRi": 131.044,
-        "piutangUsaha": 223.9008,
-        "tagihanBruto": 413.40089
-      }, {
-        "bulan": "Feb",
-        "penjualanRa": 222.925,
-        "penjualanRi": 0,
-        "piutangUsaha": 0,
-        "tagihanBruto": 0
-      }, {
-        "bulan": "Mar",
-        "penjualanRa": 336.759,
-        "penjualanRi": 0,
-        "piutangUsaha": 0,
-        "tagihanBruto": 0
-      }, {
-        "bulan": "Apr",
-        "penjualanRa": 466.732,
-        "penjualanRi": 0,
-        "piutangUsaha": 0,
-        "tagihanBruto": 0
-      }, {
-        "bulan": "Mei",
-        "penjualanRa": 600.744,
-        "penjualanRi": 0,
-        "piutangUsaha": 0,
-        "tagihanBruto": 0
-      }, {
-        "bulan": "Jun",
-        "penjualanRa": 736.969,
-        "penjualanRi": 0,
-        "piutangUsaha": 0,
-        "tagihanBruto": 0
-      }, {
-        "bulan": "Jul",
-        "penjualanRa": 886.182,
-        "penjualanRi": 0,
-        "piutangUsaha": 0,
-        "tagihanBruto": 0
-      }, {
-        "bulan": "Ags",
-        "penjualanRa": 1046.702,
-        "penjualanRi": 0,
-        "piutangUsaha": 0,
-        "tagihanBruto": 0
-      }, {
-        "bulan": "Sep",
-        "penjualanRa": 1215.714,
-        "penjualanRi": 0,
-        "piutangUsaha": 0,
-        "tagihanBruto": 0
-      }, {
-        "bulan": "Okt",
-        "penjualanRa": 1438.584,
-        "penjualanRi": 0,
-        "piutangUsaha": 0,
-        "tagihanBruto": 0
-      }, {
-        "bulan": "Nov",
-        "penjualanRa": 1671.232,
-        "penjualanRi": 0,
-        "piutangUsaha": 0,
-        "tagihanBruto": 0
-      }, {
-        "bulan": "Des",
-        "penjualanRa": 1900,
-        "penjualanRi": 0,
-        "piutangUsaha": 0,
-        "tagihanBruto": 0
-      }
-    ];
-
-    var chart = AmCharts.makeChart('financial_chart', {
+    var _chart = AmCharts.makeChart(this.props.id, {
       "type": "serial",
       "theme": "light",
       "dataDateFormat": "YYYY-MM-DD",
@@ -202,12 +161,16 @@ module.exports = React.createClass({
       "export": {
         "enabled": true
       },
-      "dataProvider": chartData
+      "dataProvider": this.state.chartData
     });
+
+    this.setState({
+      chart: _chart
+    });
+
   },
-  componentWillMount: function() {},
   render: function() {
-    return (<div id="financial_chart" className="CSSAnimationChart"></div>);
+    return (<div id={this.props.id} className="CSSAnimationChart"></div>);
 
   }
 });

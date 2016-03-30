@@ -5,7 +5,7 @@ var StoreConstant = require('./StoreConstant');
 
 module.exports = Reflux.createStore({
   listenables: [Actions],
-  getNetProfitData: function(rangeData) {
+  getSmwgData: function(rangeData) {
     var _url = StoreConstant.SMWG_DATA_PATH + rangeData.year + '/' + rangeData.month;
 
     this.trigger('change', {eventType: 'startRequest', data: null});

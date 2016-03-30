@@ -5,5 +5,9 @@ module.exports = Reflux.createActions([
   'getProjectInfoData',
   'getScoreCardData',
   'getRiskInfoData',
+
+  'getFinancialData',
+
+  'getSmwgData',
   'getPropertyData'
 ]);
