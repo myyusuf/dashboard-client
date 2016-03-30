@@ -7,6 +7,7 @@ module.exports = Reflux.createActions([
   'getRiskInfoData',
 
   'getFinancialData',
+  'getSalesData',
 
   'getSmwgData',
   'getPropertyData'

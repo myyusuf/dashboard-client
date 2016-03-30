@@ -27,6 +27,7 @@ module.exports = React.createClass({
     Actions.getRiskInfoData({year: this.props.year, month: this.props.month});
 
     Actions.getFinancialData({year: this.props.year, month: this.props.month});
+    Actions.getSalesData({year: this.props.year, month: this.props.month});
 
     Actions.getSmwgData({year: this.props.year, month: this.props.month});
     Actions.getPropertyData({year: this.props.year, month: this.props.month});

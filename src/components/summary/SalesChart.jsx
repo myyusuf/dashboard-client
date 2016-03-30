@@ -1,79 +1,50 @@
 var React = require('react');
+var Reflux = require('reflux');
+
+var Utils = require('../../utils/Utils');
+
+var SalesStore = require('../../stores/SalesStore');
 
 module.exports = React.createClass({
+  mixins: [Reflux.listenTo(SalesStore, 'onChange')],
   getInitialState: function() {
-    return {}
+    return {
+      chart: null
+    }
   },
   getDefaultProps: function() {
-    return {title: 'Title'}
+    var _randomId = 'salesChart_' + Utils.generateUUID();
+    return {
+      id: _randomId,
+      title: 'Title'
+    }
+  },
+  onChange: function(event, result) {
+
+    var _eventType = result.eventType;
+
+    if(_eventType === 'success'){
+      // this.setState({chartData: result.data});
+      this.state.chart.dataProvider = [];
+      this.state.chart.dataProvider = result.data;
+      this.state.chart.validateData();
+      App.unblockUI('#' + this.props.id);
+
+    }else if(_eventType === 'error'){
+      // this.setState({chartData: []});
+      this.state.chart.dataProvider = [];
+      this.state.chart.validateData();
+      App.unblockUI('#' + this.props.id);
+    }else if(_eventType === 'startRequest'){
+      App.blockUI({
+          target: '#' + this.props.id,
+          boxed: true
+      });
+    }
   },
   componentDidMount() {
 
-    var chartData = [
-      {
-        "month": "Jan",
-        "plan": 16.99,
-        "actual": 52.727,
-        "projection": null
-      }, {
-        "month": "Feb",
-        "plan": 336.515,
-        "actual": 200,
-        "projection": null
-      }, {
-        "month": "Mar",
-        "plan": 1650.662,
-        "actual": 250,
-        "projection": null
-      }, {
-        "month": "Apr",
-        "plan": 1893.504,
-        "actual": 250,
-        "projection": 250
-      }, {
-        "month": "Mei",
-        "plan": 1913.385,
-        "actual": null,
-        "projection": 370
-      }, {
-        "month": "Jun",
-        "plan": 1932.368,
-        "actual": null,
-        "projection": 380
-      }, {
-        "month": "Jul",
-        "plan": 2251.404,
-        "actual": null,
-        "projection": 385
-      }, {
-        "month": "Ags",
-        "plan": 2447.976,
-        "actual": null,
-        "projection": 500
-      }, {
-        "month": "Sep",
-        "plan": 2469.952,
-        "actual": null,
-        "projection": 510
-      }, {
-        "month": "Okt",
-        "plan": 2515.469,
-        "actual": null,
-        "projection": 515
-      }, {
-        "month": "Nov",
-        "plan": 2547.981,
-        "actual": null,
-        "projection": 620
-      }, {
-        "month": "Des",
-        "plan": 2600,
-        "actual": null,
-        "projection": 725
-      }
-    ];
-
-    var chart = AmCharts.makeChart('sales_chart', {
+    var _chart = AmCharts.makeChart(this.props.id, {
       "type": "serial",
       "theme": "light",
       "dataDateFormat": "YYYY-MM-DD",
@@ -181,13 +152,16 @@ module.exports = React.createClass({
       "export": {
         "enabled": true
       },
-      "dataProvider": chartData
+      "dataProvider": []
+    });
+
+    this.setState({
+      chart: _chart
     });
   },
-  componentWillMount: function() {},
   render: function() {
     return (
-      <div id="sales_chart" className="CSSAnimationChart"></div>
+      <div id={this.props.id} className="CSSAnimationChart"></div>
     );
 
   }
