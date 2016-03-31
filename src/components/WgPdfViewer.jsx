@@ -59,11 +59,7 @@ module.exports = React.createClass({
         _src += this.state.month + '/';
     }
 
-    _src += 'project_file.pdf?time=' + Utils.generateUUID();
-
-    // if(this.state.month  == 1){
-    //   _src='http://www.google.co.id';
-    // }
+    _src += 'project_file.pdf';
 
     return (
       <div className="container-fluid container-lf-space">

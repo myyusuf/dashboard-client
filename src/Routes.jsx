@@ -8,7 +8,7 @@ var Main = require('./components/Main');
 var WgPdfViewer = require('./components/WgPdfViewer');
 
 module.exports = (
-  <Router history={browserHistory}>
+  <Router>
     <Route path="/" component={Main}>
       <Route path="viewpdf/:viewerType/:year/:month" component={WgPdfViewer}>
       </Route>

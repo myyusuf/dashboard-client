@@ -33,7 +33,7 @@ module.exports = React.createClass({
         </div>
 
         <div className="page-logo" id="wgpage-logo">
-          <a href="index.html">
+          <a href="/">
             <img src="/wgassets/images/wg-logo-light.png" alt="logo" className="logo-default"/>
           </a>
         </div>
@@ -56,7 +56,7 @@ module.exports = React.createClass({
                   </a>*/}
                 </li>
                 <li>
-                  <a href="login.html">
+                  <a href="/logout">
                     <i className="icon-lock"></i>
                     Log Out
                   </a>
