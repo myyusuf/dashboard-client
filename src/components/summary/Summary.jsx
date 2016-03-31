@@ -54,7 +54,7 @@ module.exports = React.createClass({
         </Row>
         <Row>
           <Col md={6} className="margin-bottom-20">
-            <SimplePortlet title="Laporan Keuangan">
+            <SimplePortlet title="Penjualan">
               <FinancialChart/>
             </SimplePortlet>
           </Col>

@@ -9,7 +9,7 @@ module.exports = React.createClass({
     var _result = [];
 
     if(this.props.subMenu){
-      _result.push(<li>
+      _result.push(<li key={this.props.subMenu}>
         <a className="breadcrumbs-item-link" href="#">{this.props.subMenu}</a>
       </li>);
     }

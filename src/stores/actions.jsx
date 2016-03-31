@@ -10,5 +10,7 @@ module.exports = Reflux.createActions([
   'getSalesData',
 
   'getSmwgData',
-  'getPropertyData'
+  'getPropertyData',
+
+  'getViewerData'
 ]);

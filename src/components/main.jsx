@@ -4,6 +4,8 @@ var Summary = require('./summary/Summary');
 var Breadcrumbs = require('./layout/Breadcrumbs');
 var MonthFilter = require('./MonthFilter');
 
+var Actions = require('../stores/Actions');
+
 module.exports = React.createClass({
 
   getInitialState: function() {
@@ -23,6 +25,7 @@ module.exports = React.createClass({
 
     // console.log('location : ' + this.props.location.pathname);
     // console.log('params : ' + JSON.stringify(this.props.params, null, 4));
+    Actions.getViewerData({year: this.state.year, month: this.state.month});
 
     var _subMenu = this.props.params.viewerType;
 
