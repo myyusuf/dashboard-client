@@ -21,9 +21,14 @@ module.exports = React.createClass({
   },
   render: function() {
 
+    // console.log('location : ' + this.props.location.pathname);
+    // console.log('params : ' + JSON.stringify(this.props.params, null, 4));
+
+    var _subMenu = this.props.params.viewerType;
+
     return <div>
       <Header/>
-      <Breadcrumbs>
+      <Breadcrumbs subMenu={_subMenu}>
         <MonthFilter initialMonth={this.state.month} initialYear={this.state.year} onFilterChange={this.handleFilterChange}/>
       </Breadcrumbs>
       {this.content()}
@@ -31,7 +36,12 @@ module.exports = React.createClass({
   },
   content: function() {
     if(this.props.children) {
-      return this.props.children
+
+      return(
+        <div className="page-container page-content-inner page-container-bg-solid">
+          {this.props.children}
+        </div>
+      );
     } else {
       return <div className="page-container page-content-inner page-container-bg-solid">
         <Summary month={this.state.month} year={this.state.year}></Summary>

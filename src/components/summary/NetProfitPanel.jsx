@@ -67,7 +67,7 @@ module.exports = React.createClass({
     var _description = "% Persen terhadap RKAP";
 
     return (
-      <Link to={"viewpdf/netprofit/2016/2"} className="">
+      <Link to={"viewpdf/netprofit/2016/1"} className="">
       <Panel
         id={this.props.id}
         caption={_caption}

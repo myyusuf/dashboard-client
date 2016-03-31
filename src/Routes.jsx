@@ -12,6 +12,8 @@ module.exports = (
     <Route path="/" component={Main}>
       <Route path="viewpdf/:viewerType/:year/:month" component={WgPdfViewer}>
       </Route>
+      <Route path="viewpdf/:viewerType/:year" component={WgPdfViewer}>
+      </Route>
     </Route>
   </Router>
 )
