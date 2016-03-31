@@ -12,6 +12,9 @@ var watch = require('gulp-watch');
 
 var mocha = require('gulp-mocha');
 
+var uglify = require('gulp-uglify');
+var gutil = require('gulp-util');
+
 var notify = function(error) {
   var message = 'In: ';
   var title = 'Error: ';
@@ -91,4 +94,10 @@ gulp.task('test', ['build'], function () {
 	return gulp.src('./test/**/*.js', {read: false})
 		// gulp-mocha needs filepaths so you can't have any plugins before it
 		.pipe(mocha({reporter: 'nyan'}));
+});
+
+gulp.task('compress', function() {
+  return gulp.src('./main.js')
+    .pipe(uglify().on('error', gutil.log))
+    .pipe(gulp.dest('dist'));
 });

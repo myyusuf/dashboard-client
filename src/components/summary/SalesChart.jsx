@@ -42,7 +42,7 @@ module.exports = React.createClass({
       });
     }
   },
-  componentDidMount() {
+  componentDidMount: function() {
 
     var _chart = AmCharts.makeChart(this.props.id, {
       "type": "serial",
