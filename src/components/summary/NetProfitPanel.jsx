@@ -68,6 +68,17 @@ module.exports = React.createClass({
 
     var _linkUrl = 'viewpdf/netprofit/' + this.state.netProfit.year + '/' + this.state.netProfit.month;
 
+    var _netProfit = parseFloat(this.state.netProfit.netProfit);
+    var _prevNetProfit = parseFloat(this.state.netProfit.prevNetProfit);
+
+    var _iconType = {};
+    if(_netProfit > _prevNetProfit){
+      _iconType = Panel.greenUpArrow;
+    }else{
+      _iconType = Panel.redDownArrow;
+    }
+
+
     return (
       <Link to={_linkUrl} className="">
       <Panel
@@ -76,6 +87,7 @@ module.exports = React.createClass({
         title={_title}
         description={_description}
         progressInPercentage={Formatter.formatNumber(_progressInPercentage)}
+        iconType={_iconType}
       />
       </Link>
     );
