@@ -44,24 +44,24 @@ module.exports = PropertyPanel = React.createClass({
   },
   render: function() {
 
-    var _totalUnitCount = 0;
-    var _totalUnitSoldCount = 0;
+    var _total1 = 0;
+    var _total2 = 0;
     var _propertyUnitList = this.state.propertyUnitList;
 
     for(var _i=0; _i<_propertyUnitList.length; _i++){
       var _propertyUnit = _propertyUnitList[_i];
-      _totalUnitCount += _propertyUnit.unitCountThisMonth;
-      _totalUnitSoldCount += _propertyUnit.unitSoldCountThisMonth;
+      _total1 += _propertyUnit.totalUnit;
+      _total2 += _propertyUnit.unitCountUntilThisMonth;
     }
 
     return (
       <div>
         <Row id={this.props.id} className="number-stats">
           <Col md={6} sm={6} xs={6} className="margin-bottom-20">
-            <NumberStats title="Total Unit" caption={Formatter.formatNumber(_totalUnitCount, 0)}/>
+            <NumberStats title="Total Unit " caption={Formatter.formatNumber(_total1, 0)}/>
           </Col>
           <Col md={6} sm={6} xs={6} className="margin-bottom-20">
-            <NumberStats title="Unit Terjual" caption={Formatter.formatNumber(_totalUnitSoldCount, 0)} position={NumberStats.positionRight}/>
+            <NumberStats title="Unit Terjual" caption={Formatter.formatNumber(_total2, 0)} position={NumberStats.positionRight}/>
           </Col>
         </Row>
         <PropertyTable id="wgPropertyTable"/>

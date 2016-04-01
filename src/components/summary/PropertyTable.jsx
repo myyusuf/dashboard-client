@@ -47,10 +47,10 @@ module.exports = PropertyTable = React.createClass({
       return (
           <tr key={propertyUnit.unitName}>
             <td>{propertyUnit.unitName}</td>
-            <td>{Formatter.formatNumber(propertyUnit.unitCountThisMonth)}</td>
+            <td>{Formatter.formatNumber(propertyUnit.unitCountThisMonth, 0)}</td>
             <td>{Formatter.formatNumber(propertyUnit.unitCountUntilThisMonth, 0)}</td>
             <td>{Formatter.formatNumber(propertyUnit.unitSoldCountThisMonth)}</td>
-            <td>{Formatter.formatNumber(propertyUnit.unitSoldCountUntilThisMonth, 0)}</td>
+            <td>{Formatter.formatNumber(propertyUnit.unitSoldCountUntilThisMonth)}</td>
           </tr>
       )
     }.bind(this));
