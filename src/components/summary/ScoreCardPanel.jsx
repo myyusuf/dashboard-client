@@ -15,6 +15,7 @@ var _deaultScoreCard = {
   month: 0,
   year: 0,
   total: 0,
+  prevTotal: 0,
   target: 0
 }
 
@@ -60,6 +61,16 @@ module.exports = React.createClass({
     var _title = 'ScoreCard';
     var _description = '% terhadap target';
 
+    var _total = parseFloat(this.state.scoreCard.total);
+    var _prevTotal = parseFloat(this.state.scoreCard.prevTotal);
+
+    var _iconType = {};
+    if(_total > _prevTotal){
+      _iconType = Panel.greenUpArrow;
+    }else{
+      _iconType = Panel.redDownArrow;
+    }
+
     return (
       <Panel
         id={this.props.id}
@@ -67,7 +78,7 @@ module.exports = React.createClass({
         title={_title}
         description={_description}
         progressInPercentage={Formatter.formatNumber(_progressInPercentage)}
-        iconType={Panel.greenDownArrow}
+        iconType={_iconType}
         panelColor={Panel.blueSharp}
       />);
   }
