@@ -11,6 +11,7 @@ module.exports = Panel = React.createClass({
     redUpArrow: 1,
     greenDownArrow: 2,
     redDownArrow: 3,
+    blueRightArrow: 4,
     greenSharp: 0,
     redHaze: 1,
     blueSharp: 2,
@@ -45,6 +46,8 @@ module.exports = Panel = React.createClass({
       _iconClassName = 'fa fa-chevron-circle-down font-green-meadow';
     }else if(this.props.iconType === Panel.redDownArrow){
       _iconClassName = 'fa fa-chevron-circle-down font-red';
+    }else if(this.props.iconType === Panel.blueRightArrow){
+      _iconClassName = 'fa fa-chevron-circle-right font-blue';
     };
 
     var _captionClassName = '';

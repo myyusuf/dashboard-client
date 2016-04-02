@@ -69,8 +69,10 @@ module.exports = React.createClass({
     var _iconType = {};
     if(_extremeRiskCount > _prevExtremeRiskCount){
       _iconType = Panel.redUpArrow;
-    }else{
+    }else if(_extremeRiskCount < _prevExtremeRiskCount){
       _iconType = Panel.greenDownArrow;
+    }else{
+      _iconType = Panel.blueRightArrow;
     }
 
     return (

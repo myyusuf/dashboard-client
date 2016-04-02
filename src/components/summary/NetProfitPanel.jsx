@@ -75,8 +75,10 @@ module.exports = React.createClass({
     var _iconType = {};
     if(_netProfit > _prevNetProfit){
       _iconType = Panel.greenUpArrow;
-    }else{
+    }else if (_netProfit < _prevNetProfit){
       _iconType = Panel.redDownArrow;
+    }else{
+      _iconType = Panel.blueRightArrow;
     }
 
     return (

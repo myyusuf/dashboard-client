@@ -68,8 +68,10 @@ module.exports = React.createClass({
     var _iconType = {};
     if(_lateProjectCount < _prevLateProjectCount){
       _iconType = Panel.greenDownArrow;
-    }else{
+    }else if(_lateProjectCount > _prevLateProjectCount){
       _iconType = Panel.redUpArrow;
+    }else{
+      _iconType = Panel.blueRightArrow;
     }
 
     return (
