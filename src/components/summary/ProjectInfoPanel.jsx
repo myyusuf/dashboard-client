@@ -15,7 +15,8 @@ var _defaultProjectInfo = {
   month: 0,
   year: 0,
   projectCount: 0,
-  lateProjectCount: 0
+  lateProjectCount: 0,
+  prevLateProjectCount: 0
 }
 
 module.exports = React.createClass({
@@ -61,6 +62,16 @@ module.exports = React.createClass({
     var _title = "Proyek Terlambat";
     var _description = "% terhadap total proyek";
 
+    var _lateProjectCount = this.state.projectInfo.lateProjectCount;
+    var _prevLateProjectCount = this.state.projectInfo.prevLateProjectCount;
+
+    var _iconType = {};
+    if(_lateProjectCount < _prevLateProjectCount){
+      _iconType = Panel.greenDownArrow;
+    }else{
+      _iconType = Panel.redUpArrow;
+    }
+
     return (
       <Panel
         id={this.props.id}
@@ -68,7 +79,7 @@ module.exports = React.createClass({
         title={_title}
         description={_description}
         progressInPercentage={Formatter.formatNumber(_progressInPercentage)}
-        iconType={Panel.redDownArrow}
+        iconType={_iconType}
         panelColor={Panel.redHaze}
       />);
   }

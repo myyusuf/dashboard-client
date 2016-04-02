@@ -19,6 +19,7 @@ var _defaultNetProfit = {
   month: 0,
   year: 0,
   netProfit: 0,
+  prevNetProfit: 0,
   rkap: 0
 };
 

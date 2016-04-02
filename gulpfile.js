@@ -124,4 +124,8 @@ gulp.task('compress', function() {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('mycompress', ['mybuild', 'compress']);
+gulp.task('mycompress', ['mybuild'], function() {
+  return gulp.src('./main.js')
+    .pipe(uglify().on('error', gutil.log))
+    .pipe(gulp.dest('dist'));
+});
