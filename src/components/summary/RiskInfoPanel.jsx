@@ -15,7 +15,8 @@ var _defaultRiskInfo = {
   month: 0,
   year: 0,
   riskCount: 0,
-  extremeRiskCount: 0
+  extremeRiskCount: 0,
+  prevExtremeRiskCount: 0
 }
 
 module.exports = React.createClass({
@@ -62,6 +63,16 @@ module.exports = React.createClass({
     var _title = "Nilai Risiko Ekstrim";
     var _description = "% terhadap total";
 
+    var _extremeRiskCount = parseFloat(this.state.riskInfo.extremeRiskCount);
+    var _prevExtremeRiskCount = parseFloat(this.state.riskInfo.prevExtremeRiskCount);
+
+    var _iconType = {};
+    if(_extremeRiskCount > _prevExtremeRiskCount){
+      _iconType = Panel.redUpArrow;
+    }else{
+      _iconType = Panel.greenDownArrow;
+    }
+
     return (
       <Panel
         id={this.props.id}
@@ -69,7 +80,7 @@ module.exports = React.createClass({
         title={_title}
         description={_description}
         progressInPercentage={Formatter.formatNumber(_progressInPercentage)}
-        iconType={Panel.redUpArrow}
+        iconType={_iconType}
         panelColor={Panel.purpleSoft}
       />);
   }

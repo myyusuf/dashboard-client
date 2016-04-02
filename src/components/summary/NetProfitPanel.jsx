@@ -79,7 +79,6 @@ module.exports = React.createClass({
       _iconType = Panel.redDownArrow;
     }
 
-
     return (
       <Link to={_linkUrl} className="">
       <Panel
