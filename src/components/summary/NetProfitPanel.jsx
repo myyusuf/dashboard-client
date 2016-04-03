@@ -20,7 +20,8 @@ var _defaultNetProfit = {
   year: 0,
   netProfit: 0,
   prevNetProfit: 0,
-  rkap: 0
+  rkap: 0,
+  prevRkap: 0
 };
 
 module.exports = React.createClass({
@@ -69,13 +70,27 @@ module.exports = React.createClass({
 
     var _linkUrl = 'viewpdf/netprofit/' + this.state.netProfit.year + '/' + this.state.netProfit.month;
 
-    var _netProfit = parseFloat(this.state.netProfit.netProfit);
-    var _prevNetProfit = parseFloat(this.state.netProfit.prevNetProfit);
+    // var _netProfit = parseFloat(this.state.netProfit.netProfit);
+    // var _prevNetProfit = parseFloat(this.state.netProfit.prevNetProfit);
+    //
+    // var _iconType = {};
+    // if(_netProfit > _prevNetProfit){
+    //   _iconType = Panel.greenUpArrow;
+    // }else if (_netProfit < _prevNetProfit){
+    //   _iconType = Panel.redDownArrow;
+    // }else{
+    //   _iconType = Panel.blueRightArrow;
+    // }
+
+    var _prevProgressInPercentage = 0;
+    if(this.state.netProfit.prevRkap > 0){
+        _prevProgressInPercentage = (this.state.netProfit.prevNetProfit / this.state.netProfit.prevRkap) * 100;
+    }
 
     var _iconType = {};
-    if(_netProfit > _prevNetProfit){
+    if(_progressInPercentage > _prevProgressInPercentage){
       _iconType = Panel.greenUpArrow;
-    }else if (_netProfit < _prevNetProfit){
+    }else if (_progressInPercentage < _prevProgressInPercentage){
       _iconType = Panel.redDownArrow;
     }else{
       _iconType = Panel.blueRightArrow;
