@@ -43,14 +43,19 @@ module.exports = PropertyTable = React.createClass({
 
   },
   getTableData: function(){
+
+    var _style = {
+        textAlign: 'right'
+    };
+
     var _dataList = this.state.propertyUnitList.map(function(propertyUnit){
       return (
           <tr key={propertyUnit.unitName}>
             <td>{propertyUnit.unitName}</td>
-            <td>{Formatter.formatNumber(propertyUnit.unitCountThisMonth, 0)}</td>
-            <td>{Formatter.formatNumber(propertyUnit.unitCountUntilThisMonth, 0)}</td>
-            <td>{Formatter.formatNumber(propertyUnit.unitSoldCountThisMonth)}</td>
-            <td>{Formatter.formatNumber(propertyUnit.unitSoldCountUntilThisMonth)}</td>
+            <td style={_style}>{Formatter.formatNumber(propertyUnit.unitCountThisMonth, 0)}</td>
+            <td style={_style}>{Formatter.formatNumber(propertyUnit.unitCountUntilThisMonth, 0)}</td>
+            <td style={_style}>{Formatter.formatNumber(propertyUnit.unitSoldCountThisMonth)}</td>
+            <td style={_style}>{Formatter.formatNumber(propertyUnit.unitSoldCountUntilThisMonth)}</td>
           </tr>
       )
     }.bind(this));
