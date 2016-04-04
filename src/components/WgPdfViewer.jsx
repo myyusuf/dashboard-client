@@ -61,11 +61,25 @@ module.exports = React.createClass({
 
     _src += 'project_file.pdf';
 
+    var _title = "";
+
+    var _viewerType = this.state.viewerType;
+
+    if(_viewerType == "netprofit"){
+      _title = "Laba Bersih";
+    }else if(_viewerType == "projectinfo"){
+      _title = "Proyek Terlambat";
+    }else if(_viewerType == "scorecard"){
+      _title = "Score Card";
+    }else{
+      _title = _viewerType;
+    }
+
     return (
       <div className="container-fluid container-lf-space">
         <Row>
           <Col md={12} className="margin-bottom-20">
-            <SimplePortlet title={this.props.params.viewerType}>
+            <SimplePortlet title={_title}>
               <iframe id={this.props.id} src={_src} width="100%" height="600" allowFullScreen webkitallowfullscreen></iframe>
               {/*<PDF page={1} file={_src} onDocumentComplete={this._onDocumentComplete}/>*/}
             </SimplePortlet>

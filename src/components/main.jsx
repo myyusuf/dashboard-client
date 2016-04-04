@@ -27,7 +27,19 @@ module.exports = React.createClass({
     // console.log('params : ' + JSON.stringify(this.props.params, null, 4));
     Actions.getViewerData({year: this.state.year, month: this.state.month});
 
-    var _subMenu = this.props.params.viewerType;
+    var _subMenu = "";
+
+    var _viewerType = this.props.params.viewerType;
+
+    if(_viewerType == "netprofit"){
+      _subMenu = "Laba Bersih";
+    }else if(_viewerType == "projectinfo"){
+      _subMenu = "Proyek Terlambat";
+    }else if(_viewerType == "scorecard"){
+      _subMenu = "Score Card";
+    }else{
+      _subMenu = _viewerType;
+    }
 
     return <div>
       <Header/>
