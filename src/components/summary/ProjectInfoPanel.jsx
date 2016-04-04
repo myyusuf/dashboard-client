@@ -1,4 +1,8 @@
 var React = require('react');
+
+var ReactRouter = require('react-router');
+var Link = ReactRouter.Link;
+
 var ReactBootstrap = require('react-bootstrap');
 var Reflux = require('reflux');
 var Row = ReactBootstrap.Row;
@@ -74,7 +78,10 @@ module.exports = React.createClass({
       _iconType = Panel.blueRightArrow;
     }
 
+    var _linkUrl = 'viewpdf/projectinfo/' + this.state.projectInfo.year + '/' + this.state.projectInfo.month;
+
     return (
+      <Link to={_linkUrl} className="">
       <Panel
         id={this.props.id}
         caption={_caption}
@@ -83,6 +90,8 @@ module.exports = React.createClass({
         progressInPercentage={Formatter.formatNumber(_progressInPercentage)}
         iconType={_iconType}
         panelColor={Panel.redHaze}
-      />);
+      />
+  </Link>
+    );
   }
 });
